@@ -43,8 +43,10 @@ public class Hand implements ICardsCollection {
 	 * TODO ToChange Atelier2
 	 */
 	public Hand(ICardsCollection iCardsCollection) {
-		super();
-		cards = null;
+		super();		// TODO - à supprimer Atelier 2
+		cards = null; 	// TODO - à supprimer Atelier 2
+		//super(iCardsCollection); // TODO - à activer Atelier 2
+
 	}
 
 	@Override

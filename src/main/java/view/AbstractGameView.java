@@ -43,6 +43,7 @@ public abstract class AbstractGameView implements IGameView {
 
 	/**
 	 * En l'absence de décision par la View, le Model décidera des cartes à jouer
+	 * 	 Return : Map avec pour chaque ligne le Nom du joueur, l'index de la carte jouée
 	 */
 	@Override
 	public abstract Map<String, Integer> chooseCardsToPlay();

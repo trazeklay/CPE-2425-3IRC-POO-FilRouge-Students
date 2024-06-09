@@ -107,9 +107,10 @@ public abstract class AbstractGame implements IGame {
 	 * puis dans le Board qui contient toutes les cartes jouées lors d'un tour de jeu 
 	 * Si "Bataille", nb cartes Board > nb de cartes gamingMatMap.
 	 * 
-	 * Selon le jeu,le joueur remet les cartes gagnées dans sa Main 
+	 * Selon le jeu, le joueur remet les cartes gagnées dans sa Main
 	 * 
-	 * @param whichCardArePlayed
+	 * @param whichCardArePlayed : Map avec pour chaque ligne
+	 *   						le Nom du joueur, l'index de la carte jouée
 	 */
 	@Override
 	public final void PlayCards(Map<String, Integer> whichCardArePlayed) {

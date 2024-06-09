@@ -1,7 +1,6 @@
 package model.player;
 
 import allShared.IPlayer;
-import model.cards.Rank;
 
 /**
  * Cette classe est un Proxy ou un Adapter [Design Pattern] de la classe Player

@@ -163,7 +163,10 @@ public class Player implements IPlayer{
 		return "["+ name + " ** Hand" + hand + " ** trickPile" + trickPile + "]";
 	}
 
-	
+	/*
+	La comparaison s'effectue
+	selon l'ordre alphabétique des noms de joueurs
+	 */
 	@Override
 	public int compareTo(IPlayer arg0) {
 		int ret = -999999;

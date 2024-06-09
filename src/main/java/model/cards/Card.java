@@ -62,13 +62,13 @@ public class Card implements ICard, Comparable<Card>{
 	
 	@Override
 	public String toString() {
-		String ret = "?-?"; 
-		/*
-		 * TODO Atelier1
-		 */
+		String ret = "?-?";
+		if (isFaceUp) {
+			ret = rank.getName() + "-" + suit.getName();
+//			ret = "[" + rank.getName() + " " + suit.getName() + "]" ;
+		}
 		return ret;
 	}
-
 //	@Override
 //	public int hashCode() {
 //		final int prime = 31;

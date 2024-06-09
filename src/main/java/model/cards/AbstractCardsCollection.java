@@ -25,8 +25,11 @@ import allShared.ICardsCollection;
  * @author francoise.perrin
  */
 public abstract class AbstractCardsCollection implements ICardsCollection, Iterable<Card> {
-	
-	/*
-	 * TODO Atelier2
-	 */
+//
+//	/*
+//	 * TODO Atelier2
+//	 */
+//	public AbstractCardsCollection(ICardsCollection iCardsCollection) {
+//		this( ( (AbstractCardsCollection) iCardsCollection).cards);
+//	}
 }
