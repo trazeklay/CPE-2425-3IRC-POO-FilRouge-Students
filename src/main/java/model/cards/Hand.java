@@ -51,58 +51,61 @@ public class Hand implements ICardsCollection {
 
 	@Override
 	public final void addCard(Card pc) {
-		/*
-		 * TODO Atelier1
-		 */
+		if (cards == null) {
+			return;
+		}
+
+		cards.add(pc);
 	}
 
 	@Override
 	public final Card removeTopCard() {
-		Card card = null;
-		/*
-		 * TODO Atelier1
-		 */
-		return card;
+		if (cards == null || cards.isEmpty()) {
+			return null;
+		}
+
+		return cards.remove(0);
 	}
 
 	@Override
 	public final Card removeCard(int index) {
-		Card card = null;
-		/*
-		 * TODO Atelier1
-		 */
+		if (cards == null || cards.isEmpty() || index < 0 || index >= cards.size()) {
+			return null;
+		}
+
+		Card card = cards.get(index);
+		cards.remove(card);
+
 		return card;
 	}
 
 	@Override
 	public final boolean isEmpty() {
-		boolean ret = false;
-		/*
-		 * TODO Atelier1
-		 */
-		return ret;
+		return cards == null || cards.isEmpty();
 	}
 
 	@Override
 	public final void clear() {
-		/*
-		 * TODO Atelier1
-		 */
+		if (cards == null || cards.isEmpty()) {
+			return;
+		}
+
+		cards.clear();
 	}
 
 	@Override
 	public final int size() {
-		int ret = 0;
-		/*
-		 * TODO Atelier1
-		 */
-		return ret;
+		if (cards == null) {
+			return -1;
+		}
+
+		return cards.size();
 	}
 
-//	@Override
-//	public String toString() {
-//		return "[" + cards + "]";
-//	}
+	@Override
+	public String toString() {
+		return "[" + cards + "]";
+	}
 
 	/**
 	 * @param index
@@ -110,11 +113,18 @@ public class Hand implements ICardsCollection {
 	 * Supprime la carte de la liste
 	 */
 	public final Card playCard(int index) {
+		if (cards == null || cards.isEmpty() || index < 0 || index >= cards.size()) {
+			return null;
+		}
 
-		Card card = null;
-		/*
-		 * TODO Atelier1
-		 */
+		Card card = removeCard(index);
+
+		if (card == null) {
+			return null;
+		}
+
+		card.reveal();
+
 		return card;
 	}
 
@@ -122,13 +132,15 @@ public class Hand implements ICardsCollection {
 	 * @param index
 	 * @return true si la carte existe 
 	 */
-	public final boolean revealeCard(int index) {
+	public final boolean revealCard(int index) {
+		if (cards == null || cards.isEmpty() || index < 0 || index >= cards.size()) {
+			return false;
+		}
 
-		Card card = null;
-		/*
-		 * TODO Atelier1
-		 */
-		return card != null ? true : false;
+		Card card = cards.get(index);
+		card.reveal();
+
+		return true;
 	}
 
 	/**
@@ -137,11 +149,14 @@ public class Hand implements ICardsCollection {
 	 */
 	public final boolean hideCard(int index) {
 
-		Card card = null;
-		/*
-		 * TODO Atelier1
-		 */
-		return card != null ? true : false;
+		if (cards == null || cards.isEmpty() || index < 0 || index >= cards.size()) {
+			return false;
+		}
+
+		Card card = cards.get(index);
+		card.hide();
+
+		return true;
 	}
 
 

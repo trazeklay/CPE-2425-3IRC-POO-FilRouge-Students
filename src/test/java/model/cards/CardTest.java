@@ -78,7 +78,7 @@ public class CardTest {
             Card card = cardSamples.get(i);
 
             // method being tested
-            card.reveale();
+            card.reveal();
 
             String expectedRevealedValue = cardSamplesValues.get(i);
             String revealedResult = card.toString();
