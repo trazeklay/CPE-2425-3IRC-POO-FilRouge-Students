@@ -1,6 +1,7 @@
 package model.player;
 
 import allShared.IPlayer;
+import model.cards.CardRender;
 
 /**
  * Cette classe est un Proxy ou un Adapter [Design Pattern] de la classe Player
@@ -23,75 +24,47 @@ public class PlayerRender implements IPlayer, Comparable<IPlayer> {
 	
 	@Override
 	public final String getName() {
-		String ret = null;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		return player.getName();
 	}
 	
 	@Override
 	public final boolean isStillActive() {
-		boolean ret = false;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		return player.isStillActive();
 	}
 
 	@Override
 	public final boolean isTrickWinner() {
-		boolean ret = false;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		return player.isTrickWinner();
 	}
 	
 
 	@Override
 	public boolean isGameWinner() {
-		boolean ret = false;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		return player.isGameWinner();
 	}
 
 	@Override
 	public String toString() {
-		String ret = null;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		return player.toString();
 	}
 
 	@Override
-	public int hashCode() {	
-		int ret = -99999;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+	public int hashCode() {
+		return player.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		boolean ret = false;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		if (obj instanceof CardRender) {
+			return player.equals((IPlayer) obj);
+		}
+
+		return false;
 	}
 
 	@Override
 	public int compareTo(IPlayer o) {
-		int ret = -99999;
-		/*
-		 * TODO Atelier2
-		 */
-		return ret;
+		return player.compareTo(o);
 	}
 
 
