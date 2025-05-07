@@ -45,7 +45,7 @@ public class PlayerRender implements IPlayer, Comparable<IPlayer> {
 
 	@Override
 	public String toString() {
-		return player.toString();
+		return player.getName();
 	}
 
 	@Override

@@ -58,6 +58,14 @@ public class Player implements IPlayer{
 	public final boolean hideCard(int index) {
 		return hand.hideCard(index);
 	}
+
+	public final void switchTrickPileToHand() {
+		Card card;
+		
+		while ((card = trickPile.removeTopCard()) != null) {
+			hand.addCard(card);
+		}
+	}
 	
 	@Override
 	public final String getName() {
@@ -67,9 +75,17 @@ public class Player implements IPlayer{
 	public final boolean isHandEmpty() {
 		return hand.isEmpty();
 	}
+
+	public final int handSize() {
+		return hand.size();
+	}
 	
 	public final boolean isTrickPileEmpty() {
 		return trickPile.isEmpty();
+	}
+
+	public final int trickPileSize() {
+		return trickPile.size();
 	}
 	
 	/**
@@ -80,7 +96,6 @@ public class Player implements IPlayer{
 		return !hand.isEmpty();
 	}
 
-	
 	/**
 	 * retourne true si le joueur possède toutes les cartes 
 	 * du deck initial 

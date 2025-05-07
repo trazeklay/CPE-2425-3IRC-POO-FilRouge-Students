@@ -29,7 +29,7 @@ public abstract class AbstractGameEvaluator implements IGameEvaluator {
 
 		for(Card card : gamingMat) {
 			if (this.comparaison(card, maxCard)==0) {
-				frequency++ ;
+				frequency++;
 			}
 		}
 

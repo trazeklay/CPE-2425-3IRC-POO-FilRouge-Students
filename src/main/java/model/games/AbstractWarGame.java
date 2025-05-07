@@ -1,66 +1,73 @@
 package model.games;
 
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import allShared.ICardsCollection;
 import allShared.IGame;
 import allShared.IGameEvaluator;
 import model.cards.Card;
-import model.cards.Rank;
-import model.cards.Suit;
 import model.player.Player;
 
-
 /**
- * Classe qui décrit les attributs et méthodes commun(e)s à les types de Bataille
- * <ul>
- *   <li> les cartes sont distribuées 1 par 1 alternativement à chaque joueur
- *   <li> un joueur joue toujours la carte au sommet de sa main (il la retourne et la joue) 	
- * </ul>
- * 
- * Il existe 2 classes dérivées qui utilisent des évaluateurs de plis différents 
- * 
+ * Implémentation générique d'un jeu de Bataille.
+ *
+ * Règles communes :
+ * - Distribution initiale : on donne chaque carte du deck, une à une,
+ *   en alternance à chaque joueur.
+ * - Chaque joueur joue la carte en tête de sa main (index 0).
+ * - Fin de partie : lorsqu'un joueur possède toutes les cartes.
+ *
+ * Les variantes (Classic, NewWar) fournissent leur propre évaluateur
+ * via getGameEvaluator().
+ *
  * @author francoise.perrin
  */
 public abstract class AbstractWarGame extends AbstractGame implements IGame {
 
-	public AbstractWarGame(List<String> playersNames,ICardsCollection deck) {
+	/**
+	 * Constructeur : délègue à AbstractGame, qui appelle dealCardsFromDeck().
+	 */
+	public AbstractWarGame(List<String> playersNames, ICardsCollection deck) {
 		super(playersNames, deck);
 	}
 
-	/*
-	 * La méthode d'évaluation d'un pli est différente selon le type de jeu de Bataille
+	/**
+	 * Chaque implémentation fournit son évaluateur de pli.
 	 */
 	protected abstract IGameEvaluator getGameEvaluator();
 
-	/*
-	 * La méthode de distribution des cartes est différente selon le type de jeu
-	 * 1 par 1 pour la Bataille
+	/**
+	 * Distribution des cartes : on retire chaque carte du deck et on l'attribue
+	 * tour à tour à chaque joueur. Si le deck est vide, on s'arrête.
+	 *
+	 * @param nbCards nombre de cartes à distribuer (généralement la taille du deck)
 	 */
+	@Override
 	protected final void dealCardsFromDeck(int nbCards) {
-	
-		/*
-		 * TODO Atelier3
-		 */
+		for (int i = 0; i < nbCards * players.size(); i++) {
+			if (deck.isEmpty()) break;
+
+			Player player = players.get(i % players.size());
+			Card card = deck.removeTopCard();
+
+			if (card != null) player.addCardToHand(card);
+		}
 	}
 
-	
-	/*
-	 * La méthode de test de la fin du jeu est différente selon le type de jeu
-	 * A la bataille, le jeu est fini quand 1 joueur a gagné toutes les cartes   
-	 * Au delà de retourner si le Game a été gagné, cette méthode
-	 * "taggue" le vainqueur du Game
+	/**
+	 * La partie se termine dès qu'un joueur possède toutes les cartes initiales.
+	 * On marque alors ce joueur comme gagnant.
+	 *
+	 * @return true si un joueur a gagné la partie
 	 */
 	@Override
 	public final boolean isGameEnd() {
-		boolean isGameEnd = false;
-		
-		/*
-		 * TODO Atelier3
-		 */
-		return isGameEnd;
+		for (Player p : players) {
+			if (p.hasWonAllCards(initDeckSize)) {
+				p.setGameWinner(true);
+				return true;
+			}
+		}
+		return false;
 	}
-
 }
